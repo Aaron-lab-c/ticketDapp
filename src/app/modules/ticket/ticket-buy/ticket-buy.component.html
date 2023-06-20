@@ -1,0 +1,45 @@
+<div *ngIf="this.showOverlay==true" class="overlay" id="overlay">
+    <div class="overlay-message"><label class="fw-bold">處理中...</label></div>
+    <div *ngIf="this.showOverlay==true" class="spinner-border" style="position:absolute;left:50%;top:200px;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+<div Style="width:700px;height:350px" class="container p-3 mb-2 bg-light text-dark border border-info position-absolute top-50 start-50 translate-middle">
+    <div class="Column">
+            <form (ngSubmit)="Buy()">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                    <p class="fw-bold" style="display: inline-block;">票券種類：</p>
+
+                    <span *ngIf="this.tokenId=='0'" style="display: inline-block;" class="input-group-text" id="basic-addon1">Zone_A</span>
+                    <span *ngIf="this.tokenId=='1'" style="display: inline-block;" class="input-group-text" id="basic-addon1">Zone_B</span>
+                    <span *ngIf="this.tokenId=='2'" style="display: inline-block;" class="input-group-text" id="basic-addon1">Zone_C</span>
+                    <span *ngIf="this.tokenId=='3'" class="input-group-text" id="basic-addon1">Zone_D</span><br>
+                    
+                    <p class="fw-bold" style="display: inline-block;">數量：</p>
+
+                    <button style='font-size:16px' type="button" class="btn btn-primary" (click)="decrement()">-</button>
+                        <input min="0" max="3" type="number" placeholder="ticketamount" 
+                        name="ticketamount" [(ngModel)]="this.ticketmodel.amount"/>
+
+                    <button style='font-size:16px' type="button" class="btn btn-primary"  (click)="increment()">+</button>
+
+                </div>
+                <div>
+                    <button type="submit" style="position:absolute;left:50%;top:260px;" class="btn btn-outline-success position-absolute translate-middle">submit</button>
+                </div>
+                <div *ngIf="this.result==true" style="position:absolute;left:35%;top:300px;" role="alert">
+                    <a href="{{this.resultURL}}">前往polygonscan查看交易結果</a>
+                </div>
+            </form>
+
+            <br>
+            <div *ngIf="this.result==true" class="alert alert-primary" role="alert">
+                Success!
+            </div>
+            <div *ngIf="this.result==false" class="alert alert-danger" role="alert">
+                Fail!
+            </div>
+
+    </div>
+</div>

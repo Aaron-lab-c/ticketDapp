@@ -1,0 +1,83 @@
+<div *ngIf="this.result==true" class="alert alert-primary" role="alert">
+    Success!
+</div>
+<div *ngIf="this.result==false" class="alert alert-danger" role="alert">
+    Fail!
+</div>
+
+<div *ngIf="this.showOverlay==true" class="overlay" id="overlay">
+    <div class="overlay-message"><label class="fw-bold">處理中...</label></div>
+        <div *ngIf="this.showOverlay==true" class="spinner-border" style="position:absolute;left:50%;top:200px;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+<div class="container" style="margin-top: 50px;">
+    <div class="row row-cols-2 g-3">
+        <div class="col container rounded border border-3 position-relative" style="padding:15px;">
+            授權：
+            <form (ngSubmit)="Approve()">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">目標地址：</span>
+                    <input type="text" placeholder="to_address" 
+                    name="to_address" [(ngModel)]="this.to_address_approve"/>
+                </div>
+                <button type="submit"  class="btn btn-outline-success">授權轉讓</button>
+            </form>
+        </div>
+        <br>
+        <div class="col container rounded border border-3 position-relative" style="padding:15px;">
+            撤銷：
+            <form (ngSubmit)="Revoke()">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">目標地址：</span>
+                    <input type="text" placeholder="to_address" 
+                    name="to_address" [(ngModel)]="this.to_address_revoke"/>
+                </div>
+                <button type="submit"  class="btn btn-outline-success">撤銷轉讓</button>
+            </form>
+        </div>
+        <br>
+        <div class="col container rounded border border-3 position-relative" style="padding:15px;">
+            查詢目標是否被授權：
+            <form (ngSubmit)="isApprovedForAll()">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">目標地址：</span>
+                    <input type="text" placeholder="to_address" 
+                    name="to_address" [(ngModel)]="this.to_address_search"/>
+                </div>
+                <button type="submit"  class="btn btn-outline-success">查詢</button>
+            </form>
+        </div>
+        <br>
+        <div class="col container rounded border border-3 position-relative" style="padding:15px;">
+        轉讓：
+
+            <form (ngSubmit)="safeTransferFrom()">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon2">轉出地址：</span>
+                    <input type="text" placeholder="to_address" 
+                        name="to_address" [(ngModel)]="this.to_address_transfer"/>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">票券種類：</span>
+                    <select  class="form-control" style="width: 30px;" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="this.selectedValue" name="selectedValue">
+                        <ng-container *ngFor="let option of options; let i = index">
+                            <option *ngIf="i==0"  [value]="option.value">
+                                {{ option.label }}
+                            </option>
+                            <option *ngIf="i!=0"  [value]="option.value">
+                                {{ option.label }}
+                            </option>
+                        </ng-container>
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">票券數量：</span>
+                    <input type="number" placeholder="amount" 
+                    name="amount" [(ngModel)]="this.amount_transfer"/>
+                </div>
+                <button type="submit"  class="btn btn-outline-success">轉讓</button>
+            </form>
+        </div>
+    </div>
+</div>

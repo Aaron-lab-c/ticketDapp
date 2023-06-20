@@ -1,0 +1,51 @@
+<div *ngIf="this.showOverlay==true" class="overlay" id="overlay">
+    <div class="overlay-message"><label class="fw-bold">處理中...</label></div>
+    <div *ngIf="this.showOverlay==true" class="spinner-border" style="position:absolute;left:50%;top:200px;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+<div *ngFor="let num of ids_amounts; let i = index">
+    <p *ngIf="i==0">Zone_A持有數量：{{num}}</p>
+    <p *ngIf="i==1">Zone_B持有數量：{{num}}</p>
+    <p *ngIf="i==2">Zone_C持有數量：{{num}}</p>
+    <p *ngIf="i==3">Zone_D持有數量：{{num}}</p>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+            <ng-container *ngFor="let x of getRepeatCount(num)">
+                    <div *ngIf="i==0" class="col">
+                    <div class="card">
+                        <img src="https://ipfs.io/ipfs/QmbPnQsDTRUMQBmRhDsSYfmmjjyMMwXJuX51yDJ2LiEx9m/A.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Zone_A</h5>
+                        </div>
+                    </div>
+                    </div>
+                    <div *ngIf="i==1" class="col">
+                        <div class="card">
+                        <img src="https://ipfs.io/ipfs/QmbPnQsDTRUMQBmRhDsSYfmmjjyMMwXJuX51yDJ2LiEx9m/B.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Zone_B</h5>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="i==2" class="col">
+                        <div class="card">
+                        <img src="https://ipfs.io/ipfs/QmbPnQsDTRUMQBmRhDsSYfmmjjyMMwXJuX51yDJ2LiEx9m/C.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Zone_C</h5>
+                        </div>
+                        </div>
+                    </div>
+                    <div *ngIf="i==3" class="col">
+                        <div class="card">
+                        <img src="https://ipfs.io/ipfs/QmbPnQsDTRUMQBmRhDsSYfmmjjyMMwXJuX51yDJ2LiEx9m/D.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Zone_D</h5>
+                        </div>
+                        </div>
+                    </div>
+        </ng-container>
+    </div>
+    <hr>
+
+</div>
+
